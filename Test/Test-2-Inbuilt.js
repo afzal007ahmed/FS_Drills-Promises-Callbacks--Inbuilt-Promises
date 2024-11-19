@@ -1,0 +1,2 @@
+import { toLower , toUpper , sortContent , deleteFiles , readFiles } from "../Problem-2-Inbuilt-Promises.js" ;
+readFiles('/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/', 'lipsum.txt', toUpper, toLower, sortContent , deleteFiles , 'file-1.txt');
