@@ -13,44 +13,21 @@ import {promises as fs} from "fs" ;
 
 
 
-export function readFiles(path, filename, callback1, callback2, callback3, callback4) {
-    fs.readFile(path + filename, 'utf8')
-        .then((res) => {
-            callback1(path, 'file-1.txt', res)
-                .then((res) => {
-                    fs.appendFile(path + 'filenames.txt', 'file-1.txt\n');
-                    callback2(path, 'file-2.txt', res)
-                        .then((res) => {
-                            fs.appendFile(path + 'filenames.txt', '\nfile-2.txt');
-                            callback3(path, 'file-3.txt', res)
-                                .then((res) => {
-                                    fs.appendFile(path + 'filenames.txt', '\nfile-3.txt');
-                                    callback4(path, 'filenames.txt')
-                                        .then(() => {})
-                                        .catch((err) => console.log(err));
-                                })
-                                .catch(() => { })
-                        })
-                        .catch((err) => { console.log(err) })
-
-                }
-                )
-                .catch((err) => {
-                    console.log(err);
-                }
-                )
-        })
-        .catch((err) => console.log(err));
+export function readFiles(path, filename) {
+    return fs.readFile(path + filename, 'utf8') ;
 }
 
-export function toUpper(path, newfilename, data) {
-   return fs.writeFile(path + newfilename, data.toUpperCase())
+export function toUpper(path, newfilename, data) 
+{ 
+     fs.appendFile( path+'filename.txt' , newfilename , (err) => { if(err) console.log(err)}) ;
+     return fs.writeFile(path + newfilename, data.toUpperCase())
    .then(() => {
     return fs.readFile( path+newfilename , 'utf8' ) 
    })
    .catch((err) => err ) 
 }
 export function toLower(path, newfilename, data) {
+    fs.appendFile( path+'filename.txt' , `\n${newfilename}` , (err) => { if(err) console.log(err)}) ;
     let filedata = data.toLowerCase().split(/[.\n]/).filter((item) => { if (item) return item }).join('\n');
     return fs.writeFile(path + newfilename, filedata )
     .then(() => {
@@ -60,6 +37,7 @@ export function toLower(path, newfilename, data) {
 }
 
 export function sortContent( path , filename , data ) {
+    fs.appendFile( path+'filename.txt' , `\n${filename}` , (err) => { if(err) console.log(err)}) ;
   let arr = data.split(/[.\n]/).sort().join() ;
    return fs.writeFile( path+filename , arr )
   .then(() => {

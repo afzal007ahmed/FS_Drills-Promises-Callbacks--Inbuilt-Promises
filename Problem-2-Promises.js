@@ -12,6 +12,7 @@ export function readFiles(path, filename) {
 }
 
 export function toUpper(data, newfilename, path) {
+    fs.appendFile( path+'filename.txt', newfilename  , (err) => {if(err) console.log(err)})
     return new Promise((res, rej) => {
         fs.writeFile(path + newfilename, data.toUpperCase(), (err) => {
             if (err) {
@@ -23,6 +24,7 @@ export function toUpper(data, newfilename, path) {
 }
 
 export function toLower(path, data, filename) {
+    fs.appendFile( path+'filename.txt', `\n${filename}`  , (err) => {if(err) console.log(err)})
     let filedata = data.toLowerCase().split(/[.\n]/).filter((item) => { if (item) return item }).join('\n');
     return new Promise((res, rej) => {
         fs.writeFile(path + filename, filedata, (err) => {
@@ -35,6 +37,7 @@ export function toLower(path, data, filename) {
 }
 
 export function sortedFile(path, filename, data) {
+    fs.appendFile( path+'filename.txt', `\n${filename}`  , (err) => {if(err) console.log(err)})
     let filedata = data.split('\n').sort().join('\n');
     return new Promise((res, rej) => {
         fs.writeFile(path + filename, filedata, (err) => {
