@@ -9,12 +9,28 @@ import fs from "fs";
 */
 
 
+export function makeDirectory1( path , directoryname ) {
+    return new Promise ( (res , rej ) => {
+        fs.mkdir( path + directoryname , (err) => {
+            if( err.code == 'EEXIST' ) {
+                res() ;
+            } 
+            else if( err ) {
+                rej() ;
+            }
+            else{
+                res() ;
+            }
+        })
+    })
+}
 export function makeFiles(path, filename, data) {
     return new Promise((res, rej) => {
         fs.writeFile(path + filename, JSON.stringify(data), (err) => {
             if (err) {
                 rej(err);
             }
+            else
             res('File is Created');
         })
     });
@@ -26,6 +42,7 @@ export function deleteFiles(path, filename) {
             if (err) {
                 rej(err);
             }
+            else
             res('File Deleted');
         })
     })

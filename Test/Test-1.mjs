@@ -1,2 +1,7 @@
-import { createDelete } from "../Problem-1.js";
-createDelete('/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/' , 'file.json' , 'insert this data' ) ;
+import { makeDirectory, CreateFiles, deleteFiles } from "../Problem-1.js"
+
+makeDirectory('/home/afzal-ahmed/Downloads/', 'AllJsonFiles', (path, filename, data) => {
+    CreateFiles(path, filename, data, (path, filename) => {
+        deleteFiles(path, filename);
+    })
+})
