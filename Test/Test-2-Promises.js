@@ -6,4 +6,5 @@ readFiles('/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/', 'lipsum.txt')
 .then((res) => sortedFile('/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/' , 'file-3.txt' , res)) 
 .then((res) => readFiles('/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/' , 'filename.txt' ))
 .then((res) => deleteFiles( '/home/afzal-ahmed/Downloads/JS-FS-Drills/Test/' , res.split('\n').filter((item) => { if( item ) return item}) , 0 ) ) 
+.then(()=>{ console.log('all files are deleted')}) 
 .catch((err) => console.log(err) ) ;
